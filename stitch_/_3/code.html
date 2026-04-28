@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#bcc9c6",
+                        "primary": "#00685f",
+                        "inverse-surface": "#2d3133",
+                        "background": "#f7f9fb",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "on-background": "#191c1e",
+                        "on-secondary-container": "#54647a",
+                        "secondary-container": "#d0e1fb",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-primary-container": "#f4fffc",
+                        "primary-fixed": "#89f5e7",
+                        "outline": "#6d7a77",
+                        "on-primary-fixed": "#00201d",
+                        "on-tertiary-fixed": "#370e00",
+                        "tertiary": "#924628",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#fffbff",
+                        "secondary": "#505f76",
+                        "on-tertiary-fixed-variant": "#773215",
+                        "tertiary-fixed": "#ffdbce",
+                        "surface": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-primary-fixed-variant": "#005049",
+                        "on-error": "#ffffff",
+                        "surface-container": "#eceef0",
+                        "surface-bright": "#f7f9fb",
+                        "tertiary-container": "#b05e3d",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#008378",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-surface-variant": "#3d4947",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#6bd8cb",
+                        "surface-tint": "#006a61",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "surface-container-low": "#f2f4f6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-margin": "48px",
+                        "container-padding": "32px",
+                        "unit": "4px",
+                        "element-gap": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter", "Microsoft YaHei", "sans-serif"],
+                        "label-caps": ["Inter", "Microsoft YaHei", "sans-serif"],
+                        "body-sm": ["Inter", "Microsoft YaHei", "sans-serif"],
+                        "body-main": ["Inter", "Microsoft YaHei", "sans-serif"],
+                        "title-sm": ["Inter", "Microsoft YaHei", "sans-serif"],
+                        "display-lg": ["Inter", "Microsoft YaHei", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-main": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                        "display-lg": ["30px", {"lineHeight": "38px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f7f9fb;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-main text-on-surface min-h-screen flex flex-col">
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center p-container-padding relative overflow-hidden">
+<!-- Subtle Background Decorative Elements -->
+<div class="absolute top-[-10%] right-[-10%] w-[40rem] h-[40rem] bg-primary-fixed/20 rounded-full blur-3xl opacity-30"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[30rem] h-[30rem] bg-secondary-container/30 rounded-full blur-3xl opacity-20"></div>
+<!-- Login Card -->
+<div class="relative z-10 w-full max-w-[440px] bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm p-10 md:p-12">
+<!-- Brand Identity -->
+<div class="flex flex-col items-center mb-10">
+<div class="w-14 h-14 bg-primary-container rounded-lg flex items-center justify-center mb-6 shadow-sm">
+<span class="material-symbols-outlined text-on-primary-container text-3xl" data-icon="spa" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<h1 class="text-display-lg font-display-lg text-primary tracking-tight">行政禅 (Admin Zen)</h1>
+<p class="text-body-sm font-body-sm text-secondary mt-2">高效管理，禅意办公</p>
+</div>
+<!-- Login Form -->
+<div class="space-y-6">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface mb-8 text-center">登录</h2>
+</div>
+<form class="space-y-gutter">
+<!-- Username Field -->
+<div class="space-y-2">
+<label class="text-label-caps font-label-caps text-on-surface-variant block" for="username">用户名 / 邮箱</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="person">person</span>
+</div>
+<input class="block w-full pl-10 pr-4 py-3 bg-white border border-outline-variant rounded-lg text-body-main font-body-main placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" id="username" name="username" placeholder="请输入您的账号" type="text"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="text-label-caps font-label-caps text-on-surface-variant block" for="password">密码</label>
+<a class="text-body-sm font-body-sm text-primary hover:underline transition-colors" href="#">忘记密码？</a>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="lock">lock</span>
+</div>
+<input class="block w-full pl-10 pr-12 py-3 bg-white border border-outline-variant rounded-lg text-body-main font-body-main placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" id="password" name="password" placeholder="请输入您的密码" type="password"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="visibility">visibility</span>
+</div>
+</div>
+</div>
+<!-- Login Button -->
+<div class="pt-4">
+<button class="w-full bg-primary text-white py-3.5 rounded-lg font-title-sm text-title-sm shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2" type="submit">
+<span>登录</span>
+<span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Footer Links -->
+<div class="mt-10 pt-8 border-t border-outline-variant/30 text-center">
+<p class="text-body-sm font-body-sm text-secondary">
+                    还没有账号？ 
+                    <a class="text-primary font-semibold hover:underline" href="#">联系HR开通</a>
+</p>
+</div>
+</div>
+<!-- Aesthetic Side Image Decor (Hidden on mobile) -->
+<div class="hidden xl:block fixed left-12 bottom-12 max-w-xs">
+<div class="bg-white/40 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-lg">
+<img alt="Minimalist office environment" class="rounded-lg w-full h-48 object-cover mb-3" data-alt="Calm minimalist office workspace with a single green plant, soft natural sunlight, and clean white surfaces for a zen feel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbnLLCjgXU0xjVVUMmJePWxhNtMNuZqIoq7OdGMuKHrtcs5T-KzxKEiPhuvSSgNbqLoAyKbc09kGFI6gLyKQaN1W0KQDHTWwxnKM4WwqmMhzJAXZssHADpmEjOs_9l-LoZBD4MhuchJsCCvUTIsbpt46MiYz0QnzkEs6-2HN_dqxjkIm8LX-x1MBLf_eIkkmB5r9M4Ue2X8TSfPmyoCSsNXIEsQ_Q3rH4Y3PbFtauUMJ3WWfpC6TPTsEG3L8HwJCG1dvVN9jTQG5Qi"/>
+<p class="text-label-caps font-label-caps text-secondary text-center">专注、简约、平衡</p>
+</div>
+</div>
+</main>
+<!-- Footer Disclaimer -->
+<footer class="py-8 text-center relative z-10">
+<p class="text-body-sm font-body-sm text-outline">
+            © 2024 行政禅 (Admin Zen) . 企业级智能化假勤管理平台
+        </p>
+</footer>
+</body></html>

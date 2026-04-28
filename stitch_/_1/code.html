@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#bcc9c6",
+                    "primary": "#00685f",
+                    "inverse-surface": "#2d3133",
+                    "background": "#f7f9fb",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "on-background": "#191c1e",
+                    "on-secondary-container": "#54647a",
+                    "secondary-container": "#d0e1fb",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary-container": "#f4fffc",
+                    "primary-fixed": "#89f5e7",
+                    "outline": "#6d7a77",
+                    "on-primary-fixed": "#00201d",
+                    "on-tertiary-fixed": "#370e00",
+                    "tertiary": "#924628",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary-container": "#fffbff",
+                    "secondary": "#505f76",
+                    "on-tertiary-fixed-variant": "#773215",
+                    "tertiary-fixed": "#ffdbce",
+                    "surface": "#f7f9fb",
+                    "on-surface": "#191c1e",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-primary-fixed-variant": "#005049",
+                    "on-error": "#ffffff",
+                    "surface-container": "#eceef0",
+                    "surface-bright": "#f7f9fb",
+                    "tertiary-container": "#b05e3d",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#008378",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary-fixed": "#0b1c30",
+                    "on-surface-variant": "#3d4947",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#6bd8cb",
+                    "surface-tint": "#006a61",
+                    "primary-fixed-dim": "#6bd8cb",
+                    "surface-container-low": "#f2f4f6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-margin": "48px",
+                    "container-padding": "32px",
+                    "unit": "4px",
+                    "element-gap": "16px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter", "Microsoft YaHei", "sans-serif"],
+                    "label-caps": ["Inter", "Microsoft YaHei", "sans-serif"],
+                    "body-sm": ["Inter", "Microsoft YaHei", "sans-serif"],
+                    "body-main": ["Inter", "Microsoft YaHei", "sans-serif"],
+                    "title-sm": ["Inter", "Microsoft YaHei", "sans-serif"],
+                    "display-lg": ["Inter", "Microsoft YaHei", "sans-serif"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-main": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "title-sm": ["18px", {"lineHeight": "26px", "fontWeight": "500"}],
+                    "display-lg": ["30px", {"lineHeight": "38px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f7f9fb; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-main text-on-surface">
+<!-- SideNavBar Anchor -->
+<aside class="docked fixed left-0 top-0 h-screen w-64 border-r border-slate-100 dark:border-slate-900 bg-white dark:bg-slate-950 flex flex-col py-6 px-4 space-y-8 z-50">
+<div class="flex items-center space-x-3 px-2">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">spa</span>
+</div>
+<div>
+<h1 class="text-lg font-black tracking-widest text-teal-600 dark:text-teal-400">人事管理系统</h1>
+<p class="text-[10px] text-slate-400 uppercase tracking-tighter">企业版</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center space-x-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium">工作台</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">add_box</span>
+<span class="font-['Inter'] text-sm font-medium">请假申请</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 border-r-4 border-teal-600 rounded-r-none rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-['Inter'] text-sm font-medium">历史记录</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="font-['Inter'] text-sm font-medium">审批流程</span>
+</a>
+</nav>
+<div class="pt-6 border-t border-slate-100 dark:border-slate-900 space-y-1">
+<button class="w-full flex items-center justify-center space-x-2 bg-primary text-white py-2.5 rounded-lg font-medium active:scale-[0.98] transform transition-transform mb-6">
+<span class="material-symbols-outlined text-sm">add</span>
+<span>新申请</span>
+</button>
+<a class="flex items-center space-x-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-['Inter'] text-sm font-medium">帮助中心</span>
+</a>
+<a class="flex items-center space-x-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-900 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-error">logout</span>
+<span class="font-['Inter'] text-sm font-medium">退出登录</span>
+</a>
+</div>
+</aside>
+<!-- TopAppBar Anchor -->
+<header class="fixed top-0 right-0 left-64 h-16 flex items-center justify-between px-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm z-40">
+<div class="flex items-center space-x-4">
+<h2 class="font-headline-md text-headline-md text-slate-900 dark:text-slate-100">历史记录</h2>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative hidden lg:block">
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary w-64" placeholder="搜索申请..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-slate-500 hover:text-teal-600 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="text-slate-500 hover:text-teal-600 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-slate-200">
+<img alt="用户头像" class="w-full h-full object-cover" data-alt="minimalist professional portrait of a business woman in a clean studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqxScWs1BfaKOK17PD5OwGOn7URqGi7WW0bnblB_MdBBcEZ-AvhAepEcS0sb4Fm-tpgxBJ98OnilaPcpfRk2YblCZm3bobrtx1rg0MUvnc49ZmKuWILzyB8RBL3j3N4D1MST1PVPH_HddLEHrjvLGp8A2bJ-H81vm3ePrcf49LoQW2tbMdOyQVqCAZRPzrMR5foNoe-2MxtdenBUAG9S5VubO8QZUKWIM9RlaM3fJejSYMky7Sgq45CwCDaAoAKW4hgmftnObQvUjH"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-8 pb-12 min-h-screen">
+<div class="max-w-7xl mx-auto space-y-6">
+<!-- Filter Bar Section -->
+<div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm flex flex-wrap items-center gap-6">
+<div class="space-y-1.5 flex-1 min-w-[200px]">
+<label class="font-label-caps text-label-caps text-on-surface-variant block uppercase">申请状态</label>
+<select class="w-full border-slate-200 rounded-lg text-body-sm focus:border-primary focus:ring-primary h-10">
+<option>全部状态</option>
+<option>待审批</option>
+<option>已通过</option>
+<option>已驳回</option>
+<option>已撤回</option>
+</select>
+</div>
+<div class="space-y-1.5 flex-1 min-w-[200px]">
+<label class="font-label-caps text-label-caps text-on-surface-variant block uppercase">日期范围</label>
+<div class="relative">
+<input class="w-full border-slate-200 rounded-lg text-body-sm focus:border-primary focus:ring-primary h-10 pl-10" placeholder="2023-10-01 至 2023-10-31" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">calendar_today</span>
+</div>
+</div>
+<div class="pt-5">
+<button class="bg-primary text-white px-8 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity h-10">
+                        查询
+                    </button>
+</div>
+<div class="pt-5">
+<button class="bg-white border border-slate-200 text-slate-600 px-6 py-2 rounded-lg font-medium hover:bg-slate-50 transition-colors h-10">
+                        重回
+                    </button>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 border-b border-slate-100">
+<tr>
+<th class="px-6 py-4 font-label-caps text-label-caps text-slate-500 uppercase tracking-wider">申请编号</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-slate-500 uppercase tracking-wider">请假类型</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-slate-500 uppercase tracking-wider">开始时间</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-slate-500 uppercase tracking-wider">结束时间</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-slate-500 uppercase tracking-wider">审批状态</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-slate-500 uppercase tracking-wider text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4 text-body-sm font-medium text-slate-900">LR-20231024-001</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">年假</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-11-01 09:00</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-11-03 18:00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700">
+                                        已通过
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:underline font-medium text-body-sm">查看详情</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4 text-body-sm font-medium text-slate-900">LR-20231022-045</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">病假</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-10-22 14:00</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-10-23 18:00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700">
+                                        待审批
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:underline font-medium text-body-sm">查看详情</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4 text-body-sm font-medium text-slate-900">LR-20231015-012</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">事假</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-10-18 09:00</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-10-18 12:00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-red-100 text-red-700">
+                                        已驳回
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:underline font-medium text-body-sm">查看详情</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4 text-body-sm font-medium text-slate-900">LR-20231010-089</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">调休</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-10-12 09:00</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-10-12 18:00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700">
+                                        已通过
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:underline font-medium text-body-sm">查看详情</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4 text-body-sm font-medium text-slate-900">LR-20231005-022</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">年假</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-10-07 09:00</td>
+<td class="px-6 py-4 text-body-sm text-slate-600">2023-10-09 18:00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">
+                                        已撤回
+                                    </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:underline font-medium text-body-sm">查看详情</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<div class="text-body-sm text-slate-500">
+                        显示第 <span class="font-semibold text-slate-900">1</span> 到 <span class="font-semibold text-slate-900">5</span> 条，共 <span class="font-semibold text-slate-900">24</span> 条记录
+                    </div>
+<div class="flex items-center space-x-2">
+<button class="p-2 rounded-lg border border-slate-200 bg-white text-slate-400 hover:text-primary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-white text-body-sm font-bold">1</button>
+<button class="w-8 h-8 rounded-lg border border-slate-200 bg-white text-slate-600 hover:border-primary hover:text-primary text-body-sm transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg border border-slate-200 bg-white text-slate-600 hover:border-primary hover:text-primary text-body-sm transition-colors">3</button>
+<span class="text-slate-400">...</span>
+<button class="w-8 h-8 rounded-lg border border-slate-200 bg-white text-slate-600 hover:border-primary hover:text-primary text-body-sm transition-colors">5</button>
+<button class="p-2 rounded-lg border border-slate-200 bg-white text-slate-600 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Stats Summary (Asymmetric Bento) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="col-span-1 md:col-span-2 bg-white p-8 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
+<div class="space-y-2">
+<h3 class="text-title-sm font-title-sm text-slate-900">年度额度概览</h3>
+<p class="text-body-sm text-slate-500">截止当前日期，您的年假余额充足，请合理安排休假。</p>
+<div class="flex items-baseline space-x-4 pt-4">
+<div>
+<span class="block text-display-lg font-display-lg text-primary">12.5</span>
+<span class="text-label-caps font-label-caps text-slate-400">剩余年假 (天)</span>
+</div>
+<div class="w-px h-10 bg-slate-100 mx-4"></div>
+<div>
+<span class="block text-display-lg font-display-lg text-slate-400">15.0</span>
+<span class="text-label-caps font-label-caps text-slate-400">总计额度 (天)</span>
+</div>
+</div>
+</div>
+<div class="relative w-32 h-32">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-slate-100" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary transition-all duration-1000 ease-out" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364.4" stroke-dashoffset="60" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-title-sm font-bold text-slate-700">83%</span>
+</div>
+</div>
+</div>
+<div class="bg-primary p-8 rounded-xl shadow-lg flex flex-col justify-between text-white relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+</div>
+<div class="z-10">
+<h3 class="text-title-sm font-title-sm opacity-90">下一个休假计划</h3>
+<p class="text-display-lg font-display-lg mt-2">11月01日</p>
+<p class="text-body-sm opacity-80 mt-1">距今还有 8 天</p>
+</div>
+<button class="z-10 mt-6 w-full py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg text-sm font-medium transition-colors">
+                        管理日历
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>
