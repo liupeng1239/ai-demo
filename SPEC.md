@@ -13,7 +13,7 @@
 
 ### 前端
 - React 18 + TypeScript
-- Ant Design 5
+- Tailwind CSS（基于UI设计系统）
 - Redux Toolkit（状态管理）
 - Webpack 5（构建）
 - Axios（HTTP 客户端）
