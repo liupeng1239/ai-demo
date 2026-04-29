@@ -1,16 +1,24 @@
-import { FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { FormEvent, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Alert } from '../../components/Alert';
+import { useAppSelector } from '../../redux/hooks';
+import { useAppDispatch } from '../../redux/hooks';
+import { login } from '../../redux/slices/authSlice';
 
-interface LoginPageProps {
-  onLogin: (username: string, password: string) => Promise<void>;
-}
-
-export function LoginPage({ onLogin }: LoginPageProps) {
+export function LoginPage() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
   const [form, setForm] = useState({ username: '', password: '' });
   const [errors, setErrors] = useState({ username: '', password: '' });
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   function validateForm() {
     const nextErrors = { username: '', password: '' };
@@ -38,14 +46,18 @@ export function LoginPage({ onLogin }: LoginPageProps) {
 
     setFeedback(null);
     setIsSubmitting(true);
-    try {
-      await onLogin(form.username, form.password);
+
+    // 直接使用 dispatch 返回值判断，不依赖 try-catch
+    const result = await dispatch(login({ username: form.username, password: form.password }));
+    if (login.rejected.match(result)) {
+      // 登录失败：通过 result.payload 获取错误信息
+      setFeedback({ type: 'error', message: result.payload as string });
+    } else {
+      // 登录成功
       setFeedback({ type: 'success', message: '登录成功，正在跳转...' });
-    } catch (error) {
-      setFeedback({ type: 'error', message: (error as Error).message || '登录失败，请检查用户名密码。' });
-    } finally {
-      setIsSubmitting(false);
     }
+
+    setIsSubmitting(false);
   }
 
   function handleChange(field: 'username' | 'password', value: string) {
@@ -90,6 +102,7 @@ export function LoginPage({ onLogin }: LoginPageProps) {
                     name="username"
                     type="text"
                     value={form.username}
+                    
                     onChange={e => handleChange('username', e.target.value)}
                     placeholder="请输入您的账号"
                     className="w-full rounded-xl border border-outline-variant bg-white px-4 py-3 pl-11 text-base text-on-surface outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"

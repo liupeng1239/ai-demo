@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { login, logout } from '../redux/authSlice';
+import { logout } from '../redux/slices/authSlice';
 import { AppShell } from '../components/AppShell';
 import { DashboardPage } from '../pages/dashboard/DashboardPage';
 import { LoginPage } from '../pages/login/LoginPage';
@@ -8,7 +8,6 @@ import { ForgotPasswordPage } from '../pages/login/ForgotPasswordPage';
 import { MyLeavesPage } from '../pages/leave/MyLeavesPage';
 import { ApprovalTasksPage } from '../pages/hr/ApprovalTasksPage';
 import { SettingsPage } from '../pages/settings/SettingsPage';
-import { login as loginApi } from '../services/authService';
 import type { AppPage } from '../types';
 
 const pageConfig: Record<AppPage, { title: string; subtitle: string }> = {
@@ -75,12 +74,7 @@ export function AppRouter() {
             signedIn ? (
               <Navigate to="/dashboard" replace />
             ) : (
-              <LoginPage
-                onLogin={async (username, password) => {
-                  const response = await loginApi(username, password);
-                  dispatch(login({ user: response.user, token: response.token }));
-                }}
-              />
+              <LoginPage />
             )
           }
         />

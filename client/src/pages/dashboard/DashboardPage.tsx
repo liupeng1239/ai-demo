@@ -1,11 +1,9 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from '../../components/Alert';
-import { StatusBadge } from '../../components/StatusBadge';
 import { ApprovalTaskTable } from '../../components/ApprovalTaskTable';
 import { useAppSelector } from '../../redux/hooks';
 import type { RootState } from '../../redux/store';
-import type { ApprovalTask } from '../../types';
 
 const summaryCards = [
   { title: '待审批请假', value: 4, description: '当前有 4 条待您审批的申请' },
@@ -15,14 +13,32 @@ const summaryCards = [
 
 export function DashboardPage() {
   const navigate = useNavigate();
-  const approvalTasks = useAppSelector((state: RootState) => state.tasks.approvalTasks);
+  const tasks = useAppSelector((state: RootState) => state.tasks.tasks);
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [aiExpanded, setAiExpanded] = useState(false);
+  const [aiInput, setAiInput] = useState('');
+
+  const approvalTasks = tasks.map(t => ({
+    id: t._id,
+    applicant: t.assignee_id,
+    type: '请假审批' as const,
+    period: new Date(t.created_at).toLocaleDateString(),
+    status: (t.result || 'pending') as 'approved' | 'pending' | 'rejected',
+  }));
 
   const pendingCount = useMemo(
-    () => approvalTasks.filter((task: ApprovalTask) => task.status === 'pending').length,
+    () => approvalTasks.filter(task => task.status === 'pending').length,
     [approvalTasks]
   );
   const quickTasks = useMemo(() => approvalTasks.slice(0, 2), [approvalTasks]);
+
+  function handleAiSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!aiInput.trim()) return;
+    setFeedback({ type: 'success', message: `AI 收到: ${aiInput}` });
+    setAiInput('');
+    setAiExpanded(false);
+  }
 
   return (
     <div className="space-y-6">
@@ -91,6 +107,37 @@ export function DashboardPage() {
         <div className="mt-6 overflow-hidden rounded-3xl border border-outline-variant">
           <div className="p-6 text-sm text-on-surface-variant">请在审批任务页面查看完整审批记录。</div>
         </div>
+      </div>
+
+      {/* AI 悬浮按钮 */}
+      <div className="fixed bottom-8 right-8 z-50">
+        {aiExpanded ? (
+          <form onSubmit={handleAiSubmit} className="mb-2 flex items-center gap-2">
+            <input
+              type="text"
+              value={aiInput}
+              onChange={e => setAiInput(e.target.value)}
+              placeholder="输入 AI 指令..."
+              className="w-64 rounded-full border border-outline-variant bg-surface-container-lowest px-5 py-3 text-base text-on-surface shadow-lg outline-none focus:border-primary"
+              autoFocus
+            />
+            <button
+              type="button"
+              onClick={() => setAiExpanded(false)}
+              className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-container text-on-surface shadow-lg transition hover:bg-surface-container-highest"
+            >
+              <span className="material-symbols-outlined">close</span>
+            </button>
+          </form>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setAiExpanded(true)}
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-on-primary shadow-lg transition hover:scale-105 active:scale-95"
+          >
+            <span className="text-lg font-bold">AI</span>
+          </button>
+        )}
       </div>
     </div>
   );

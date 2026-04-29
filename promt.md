@@ -167,3 +167,108 @@ server/
 - 所有接口需要 JWT 鉴权（登录接口除外）
 - 日志使用 Python logging 模块
 - 使用 Swagger/OpenAPI 生成接口文档
+
+### Redux 异步操作错误处理规范
+
+**核心原则：通过 dispatch 返回值判断成功/失败，而不是 try-catch**
+
+Redux async thunk 在 API 返回错误时不会自动抛出异常，Promise 不会 reject。因此必须通过 thunk 的返回值来判断：
+
+```typescript
+// ✅ 正确做法：通过 rejectWithValue 传递错误，dispatch 返回值包含 rejected/fulfilled 状态
+export const login = createAsyncThunk(
+  'auth/login',
+  async (credentials: { username: string; password: string }, { rejectWithValue }) => {
+    try {
+      const response = await authService.login(credentials.username, credentials.password);
+      return response;
+    } catch (err) {
+      return rejectWithValue(err instanceof Error ? err.message : '登录失败');
+    }
+  }
+);
+
+// 调用时检查 dispatch 返回值
+const result = await dispatch(login({ username, password }));
+if (login.rejected.match(result)) {
+  // 登录失败，通过 result.payload 获取错误信息
+  throw new Error(result.payload as string);
+}
+// 登录成功，继续执行
+return result.payload;
+```
+
+**错误示例（禁止使用）：**
+```typescript
+// ❌ 错误：try-catch 无法捕获 Redux thunk 的 reject
+try {
+  await dispatch(login({ username, password }));
+  // 这里总是会执行，因为 thunk 不会抛出异常
+} catch (error) {
+  // 永远不会进入这里
+}
+```
+
+### API Service 错误处理规范
+
+**axios 响应拦截器必须处理 HTTP 错误状态码：**
+
+```typescript
+// services/api.ts
+api.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response) {
+      // 服务器返回了错误状态码（401, 403, 500 等）
+      const detail = error.response.data?.detail;
+      if (detail) {
+        throw new Error(detail);  // 抛出具体错误信息
+      }
+      throw new Error(error.response.data?.message || '请求失败');
+    }
+    if (error.request) {
+      // 请求已发出但没有收到响应
+      throw new Error('网络连接失败，请检查网络');
+    }
+    throw new Error('网络错误，请检查连接');
+  }
+);
+```
+
+**服务端 FastAPI 错误响应格式：**
+```python
+# 正确返回错误
+raise HTTPException(status_code=401, detail="用户名或密码错误")
+# 或
+return {"detail": "用户名或密码错误"}
+```
+
+前端拦截器会捕获 `error.response.data.detail`，并将其转换为 Error 对象抛出。
+
+### 前端页面调用模式
+
+```typescript
+// ✅ 正确：在组件中使用 dispatch 返回值判断
+async function handleSubmit() {
+  setIsSubmitting(true);
+  const result = await dispatch(loginAction({ username, password }));
+
+  if (loginAction.rejected.match(result)) {
+    setError(result.payload as string);
+    return;
+  }
+
+  // 登录成功
+  navigate('/dashboard');
+}
+
+// ❌ 错误：依赖 try-catch 判断
+async function handleSubmit() {
+  try {
+    await dispatch(loginAction({ username, password }));
+    // thunk 不会抛出异常，这里总是执行
+  } catch (error) {
+    // 永远不会进入
+  }
+}
+```
