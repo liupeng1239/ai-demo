@@ -21,6 +21,7 @@ class LoginResponse(BaseModel):
 @router.post('/login', response_model=LoginResponse)
 async def login(payload: LoginRequest):
     user = await authenticate_user(payload.username, payload.password)
+    print(f"Authenticated user: {user}")
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='用户名或密码错误')
 
